@@ -26,6 +26,7 @@
                <label for="decryption" class="slide decryption">Decrypte</label>
                <div class="slider-tab"></div>
             </div>
+            <p>Please Enter a valid text from 0 to 32</p>
             <!-- ENCRYPTION -->
             <div class="form-inner">
                <form action="#" class="encryption">
@@ -87,7 +88,7 @@
 
       var msg = document.getElementById("plaintext").value;
       var ciphertext;
-      if (isNaN(msg) || msg < 1 || msg > 33){
+      if (isNaN(msg) || msg < 0 || msg > 33){
          ciphertext = "<p style= color:red;>Invalid Input </p>";
       }
       else{
@@ -105,7 +106,7 @@
 
       var c = document.getElementById("ciphertext").value;
       var plaintext;
-      if (isNaN(c) || c < 1 ){
+      if (isNaN(c) || c < 0 || c > 33 ){
          plaintext= "<p style= color:red;>Invalid Input </p>";
       }
       else{
