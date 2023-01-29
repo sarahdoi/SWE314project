@@ -16,6 +16,7 @@
              Decryption
             </div>
          </div>
+
          <div class="form-container">
             <div class="slide-controls">
                <input type="radio" name="slide" id="encryption" checked>
@@ -24,31 +25,122 @@
                <label for="decryption" class="slide decryption">Decrypte</label>
                <div class="slider-tab"></div>
             </div>
+            <!-- ENCRYPTION -->
             <div class="form-inner">
                <form action="#" class="encryption">
                   <div class="field">
-                     <input type="text" placeholder="Plaintext" required>
+                     <input id = "plaintext" type="text" placeholder="Plaintext" required>
                   </div>
-              
+                  
+                  <div class="field">
+                     <p id ="encryptionResult"></p>
+                  </div>
+
                   <div class="field btn">
                      <div class="btn-layer"></div>
-                     <input type="submit" value="Encryption">
+                     <input id = "plaintextBTN" type="submit" value="Encryption">
                   </div>
-            
+
               </form>
+              <!-- DECRYPTION -->
                <form action="#" class="decryption">
                   <div class="field">
-                     <input type="text" placeholder="Ciphertext" required>
+                     <input id = "ciphertext" type="text" placeholder="Ciphertext" required>
+                  </div>
+
+                  <div class="field">
+                     <p id ="decryptionResult"></p>
                   </div>
              
                   <div class="field btn"> 
                      <div class="btn-layer"></div>
-                     <input type="submit" value="Decryption">
+                     <input id = "ciphertextBTN" type="submit" value="Decryption">
                   </div>
                </form>
             </div>
          </div>
       </div>
+   </script>
+   <script type = "text/javascript">
+      window.addEventListener( "load" , start , false );
+      function start(){
+         var plaintext = document.getElementById("plaintextBTN");
+         var ciphertext = document.getElementById("ciphertextBTN");
+         plaintext.addEventListener("click",encrypt,false );
+         ciphertext.addEventListener("click",decrypt,false );
+      }
+   
+      function encrypt(){
+         var p = 3 ; /* 1st prime number p*/
+      var q = 11; /* 2st prime number q*/
+      var n = p * q ; /* n */
+      var z = ( p - 1 )*( q - 1 ); /*Euler*/
+      var e ;/* public key */
+      var d ;/* private key */
+
+      for (e = 2 ; e < z ; e++){
+         /* public key */
+         if(gcd(e,z) == 1)
+         break;
+      }
+      for (var i = 0 ; i <= 9 ; i++){
+         var x = 1 + (i * z);
+         /* private key */
+         if( x % e == 0 )
+         {
+            d = x / e ;
+            break;
+         }
+      }
+         var msg = document.getElementById("plaintext").value;
+         var ciphertext = (Math.pow(msg,e)) % n;
+
+         var result = document.getElementById("encryptionResult");
+         result.innerHTML="<p>"+ciphertext+"</p>";
+      }
+
+      function decrypt(){
+         var p = 3 ; /* 1st prime number p*/
+      var q = 11; /* 2st prime number q*/
+      var n = p * q ; /* n */
+      var z = ( p - 1 )*( q - 1 ); /*Euler*/
+      var e ;/* public key */
+      var d ;/* private key */
+
+      for (e = 2 ; e < z ; e++){
+         /* public key */
+         if(gcd(e,z) == 1)
+         break;
+      }
+      for (var i = 0 ; i <= 9 ; i++){
+         var x = 1 + (i * z);
+         /* private key */
+         if( x % e == 0 )
+         {
+            d = x / e ;
+            break;
+         }
+      }
+         var c = document.getElementById("ciphertext").value;
+         var plaintext = (Math.pow(c,d)) % n;
+
+         var result = document.getElementById("decryptionResult");
+         result.innerHTML="<p>"+plaintext+"</p>";
+      }
+   
+
+      function gcd(a, b) {
+           while(a != b){
+            if(a > b) {
+                a -= b;
+            }
+            else {
+             b -= a;
+            }
+           }
+           return a;
+      }//end gcd function
+   </script>
       <script>
          const encryptionText = document.querySelector(".title-text .encryption");
          const encryptionForm = document.querySelector("form.encryption");
@@ -67,6 +159,6 @@
           decryptionBtn.click();
            return false;
          });
-      </script>
+         </script>
    </body>
 </html>
