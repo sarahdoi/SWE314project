@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
@@ -30,8 +31,9 @@
                <form action="#" class="encryption">
                   <div class="field">
                      <input id = "plaintext" type="text" placeholder="Plaintext" required>
-                     <div id="EnErrormsg"></div>
                   </div>
+                  <div id="EnErrormsg"></div>
+                  
                   
                   <div class="field">
                      <p id ="encryptionResult"></p>
@@ -47,8 +49,8 @@
                <form action="#" class="decryption">
                   <div class="field">
                      <input id = "ciphertext" type="text" placeholder="Ciphertext" required>
-                     <div id="DeErrormsg"></div>
                   </div>
+                  <div id="DeErrormsg"></div>
 
                   <div class="field">
                      <p id ="decryptionResult"></p>
@@ -62,120 +64,52 @@
             </div>
          </div>
       </div>
-
-
-   <script type = "text/javascript">
-      window.addEventListener( "load" , start , false );
-      function start(){
-         var plaintext = document.getElementById("plaintextBTN");
-         var ciphertext = document.getElementById("ciphertextBTN");
-         plaintext.addEventListener("click",encrypt,false );
-         ciphertext.addEventListener("click",decrypt,false );
-      }
-
-      const  p = 3 ; /* 1st prime number p*/
-      const q = 11; /* 2st prime number q*/
-      const n = p * q ; /* n */
-      const z = ( p - 1 )*( q - 1 ); /*Euler*/
-      const e = 7;/* public key */
-      const d = 3 ;/* private key */
-   
-      function encrypt(){
-         var msg = document.getElementById("plaintext").value;
-         if(isNaN(msg) || msg < 1 || msg > 33){
-            document.getElementById("EnErrormsg").innerHTML = "<p style = 'color:red;'>Invalid input!</p>";
-            return;
-         }
-         else{
-            document.getElementById("Errormsg").innerHTML = ""; 
-         }
-
-      //    var p = 11 ; /* 1st prime number p*/
-      // var q = 13; /* 2st prime number q*/
-      // var n = p * q ; /* n */
-      // var z = ( p - 1 )*( q - 1 ); /*Euler*/
-      // var e = 11;/* public key */
-      // var d = 11 ;/* private key */
-
-      // for (e = 2 ; e < z ; e++){
-      //    /* public key */
-      //    if(gcd(e,z) == 1)
-      //    break;
-      // }
-      // for (var i = 0 ; i <= 9 ; i++){
-      //    var x = 1 + (i * z);
-      //    /* private key */
-      //    if( x % e == 0 )
-      //    {
-      //       d = x / e ;
-      //       break;
-      //    }
-      // }
-         
-         var ciphertext = (Math.pow(msg,e)) % n;
-
-         var result = document.getElementById("encryptionResult");
-         result.innerHTML=ciphertext;
-      }
-
-      function decrypt(){
-
-         var c = document.getElementById("ciphertext").value;
-
-         if(isNaN(c) || c < 1 ){
-            document.getElementById("DeErrormsg").innerHTML = "<p style = 'color:red;'>Invalid input!</p>";
-            return;
-         }
-         else{
-            document.getElementById("DeErrormsg").innerHTML = ""; 
-         }
-      //    var p = 3 ; /* 1st prime number p*/
-      // var q = 11; /* 2st prime number q*/
-      // var n = p * q ; /* n */
-      // var z = ( p - 1 )*( q - 1 ); /*Euler*/
-      // var e ;/* public key */
-      // var d ;/* private key */
-
-      // for (e = 2 ; e < z ; e++){
-      //    /* public key */
-      //    if(gcd(e,z) == 1)
-      //    break;
-      // }
-      // for (var i = 0 ; i <= 9 ; i++){
-      //    var x = 1 + (i * z);
-      //    /* private key */
-      //    if( x % e == 0 )
-      //    {
-      //       d = x / e ;
-      //       break;
-      //    }
-      // }
-         var c = document.getElementById("ciphertext").value;
-         var plaintext = (Math.pow(c,d)) % n;
-
-         var result = document.getElementById("decryptionResult");
-         result.innerHTML= plaintext;
-      }
-   
-
-      // function gcd(a, b) {
-      //      while(a != b){
-      //       if(a > b) {
-      //           a -= b;
-      //       }
-      //       else {
-      //        b -= a;
-      //       }
-      //      }
-      //      return a;
-      // }//end gcd function
    </script>
+</script>
+<script type = "text/javascript">
+   var p = 3 ; /* 1st prime number p*/
+   var q = 11; /* 2st prime number q*/
+   var n = p * q ; /* n */
+   var z = ( p - 1 )*( q - 1 ); /*Euler*/
+   var e = 7 ;/* public key */
+   var d = 3 ;/* private key */
 
+
+   window.addEventListener( "load" , start , false );
+   function start(){
+      var plaintext = document.getElementById("plaintextBTN");
+      var ciphertext = document.getElementById("ciphertextBTN");
+      plaintext.addEventListener("click",encrypt,false );
+      ciphertext.addEventListener("click",decrypt,false );
+   }
+
+   function encrypt(){
+
+      var msg = document.getElementById("plaintext").value;
+      var ciphertext = (Math.pow(msg,e)) % n;
+
+      var result = document.getElementById("encryptionResult");
+      result.innerHTML="<p>"+ciphertext+"</p>";
+   }
+
+   function decrypt(){
+
+      var c = document.getElementById("ciphertext").value;
+      var plaintext = (Math.pow(c,d)) % n;
+
+      var result = document.getElementById("decryptionResult");
+      result.innerHTML="<p>"+plaintext+"</p>";
+   }
+
+
+</script>
       <script>
          const encryptionText = document.querySelector(".title-text .encryption");
          const encryptionForm = document.querySelector("form.encryption");
          const encryptionBtn = document.querySelector("label.encryption");
-         const decryptionBtn = document.querySelector("label.decryption");
+         const decryptionBtn = document.
+
+querySelector("label.decryption");
          const decryptionLink = document.querySelector("form .decryption-link a");
          decryptionBtn.onclick = (()=>{
           encryptionForm.style.marginLeft = "-50%";
@@ -185,8 +119,7 @@
           encryptionForm.style.marginLeft = "0%";
           encryptionText.style.marginLeft = "0%";
          });
-         decryptionLink.onclick = (()=>
-         {
+         decryptionLink.onclick = (()=>{
           decryptionBtn.click();
            return false;
          });
