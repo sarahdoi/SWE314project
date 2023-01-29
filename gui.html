@@ -86,19 +86,35 @@
    function encrypt(){
 
       var msg = document.getElementById("plaintext").value;
-      var ciphertext = (Math.pow(msg,e)) % n;
 
-      var result = document.getElementById("encryptionResult");
-      result.innerHTML="<p>"+ciphertext+"</p>";
+      if (isNaN(msg) || msg < 1 || msg > 33){
+         document.getElementById("EnErrormsg").innerHTML = "<p style= color:red;>Invalid Input </p>";
+      }
+      else{
+         document.getElementById("EnErrormsg").innerHTML = "";
+         var ciphertext = (Math.pow(msg,e)) % n;
+
+       var result = document.getElementById("encryptionResult");
+       result.innerHTML="<p>"+ciphertext+"</p>";
+      }
+    
    }
+
 
    function decrypt(){
 
       var c = document.getElementById("ciphertext").value;
-      var plaintext = (Math.pow(c,d)) % n;
+      if (isNaN(c) || c < 1 ){
+         document.getElementById("DeErrormsg").innerHTML = "<p style= color:red;>Invalid Input </p>";
+      }
+      else{
+         document.getElementById("DeErrormsg").innerHTML = "";
+         var plaintext = (Math.pow(c,d)) % n;
 
-      var result = document.getElementById("decryptionResult");
-      result.innerHTML="<p>"+plaintext+"</p>";
+   var result = document.getElementById("decryptionResult");
+    result.innerHTML="<p>"+plaintext+"</p>";
+       
+      }
    }
 
 
