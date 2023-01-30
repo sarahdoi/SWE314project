@@ -37,7 +37,7 @@
                   
                   
                   <div class="field">
-                     <p id ="encryptionResult"></p>
+                     <span class="label other"id ="encryptionResult"></span>
                   </div>
 
                   <div class="field btn">
@@ -54,7 +54,7 @@
                   <div id="DeErrormsg"></div>
 
                   <div class="field">
-                     <p id ="decryptionResult"></p>
+                     <span class="label other"id ="decryptionResult"></span> 
                   </div>
              
                   <div class="field btn"> 
@@ -67,6 +67,8 @@
       </div>
    </script>
 </script>
+
+
 <script type = "text/javascript">
    var p = 3 ; /* 1st prime number p*/
    var q = 11; /* 2st prime number q*/
@@ -76,29 +78,33 @@
    var d = 3 ;/* private key */
 
 
-   window.addEventListener( "load" , start , false );
+   
    function start(){
       var plaintext = document.getElementById("plaintextBTN");
       var ciphertext = document.getElementById("ciphertextBTN");
-      plaintext.addEventListener("click",encrypt,false );
-      ciphertext.addEventListener("click",decrypt,false );
+      plaintext.addEventListener("mousedown",encrypt,false );
+      ciphertext.addEventListener("mousedown",decrypt,false );
    }
 
    function encrypt(){
 
       var msg = document.getElementById("plaintext").value;
       var ciphertext;
-      if (isNaN(msg) || msg < 0 || msg > 33){
-         ciphertext = "<p style= color:red;>Invalid Input </p>";
+      var result = document.getElementById("encryptionResult");
+      if (isNaN(msg) || msg < 0 || msg >= 33){
+         //ciphertext = "<p style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p class = 'pos'style= color:red;>Invalid Input </p>";
+         //ciphertext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
+      /*IF input IS VAlid*/
       else{
-         ciphertext = (Math.pow(msg,e)) % n;
-
+         //document.getElementById("DeErrormsg").innerHTML = "";
+         ciphertext = (Math.pow(msg,e)) % n;;
+       result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Ciphertext="+ciphertext+"</p>";
        
       }
-      var result = document.getElementById("encryptionResult");
-       result.innerHTML="<p>"+ciphertext+"</p>";
-    
+
+
    }
 
 
@@ -106,29 +112,30 @@
 
       var c = document.getElementById("ciphertext").value;
       var plaintext;
-      if (isNaN(c) || c < 0 || c > 33 ){
-         plaintext= "<p style= color:red;>Invalid Input </p>";
+      var result = document.getElementById("decryptionResult");
+      if (isNaN(c) || c < 0 || c >= 33 ){
+         //plaintext= "<p style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p class = 'pos' style= color:red;>Invalid Input </p>";
+         //plaintext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
+      /*IF input IS VAlid*/
       else{
          document.getElementById("DeErrormsg").innerHTML = "";
          plaintext = (Math.pow(c,d)) % n;
-
-   
-       
+         result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Plaintext="+plaintext+"</p>";
       }
-      var result = document.getElementById("decryptionResult");
-    result.innerHTML="<p>"+plaintext+"</p>";
    }
+      window.addEventListener( "load" , start , false );
+   </script>
 
-
-</script>
+      <!--  GUI   -->
       <script>
          const encryptionText = document.querySelector(".title-text .encryption");
          const encryptionForm = document.querySelector("form.encryption");
          const encryptionBtn = document.querySelector("label.encryption");
          const decryptionBtn = document.
 
-querySelector("label.decryption");
+         querySelector("label.decryption");
          const decryptionLink = document.querySelector("form .decryption-link a");
          decryptionBtn.onclick = (()=>{
           encryptionForm.style.marginLeft = "-50%";

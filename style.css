@@ -181,3 +181,38 @@ form .btn input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+.label {
+  color: white;
+  padding: auto;
+  font-family: Arial;
+  font-size: large;
+  position: relative;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 230px;
+  height: 70px;
+  width: 500px;
+}
+.other {background-color: #e7e7e7; color: black;}
+.pos{margin-left: 230px;}
+/*.alert {
+  padding: 20px;
+  background-color: #f25449;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}*/ /*NOT worhing*/
