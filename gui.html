@@ -3,11 +3,25 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>ENCRYPTION AND DECRYPTION</title>
+      <title>welcome</title>
       <link rel="stylesheet" href="style.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
+      <style>
+         #error {
+           background : #F2DEDE;
+           color : #A94442;
+           padding:10px;
+           width : 95%;
+           border-radius:5px;
+           height: 100%;
+          width: 100%;
+          
+                 }
+       </style>
+
+
       <div class="wrapper">
          <div class="title-text">
             <div class="title encryption">
@@ -93,7 +107,7 @@
       var result = document.getElementById("encryptionResult");
       if (isNaN(msg) || msg < 0 || msg >= 33){
          //ciphertext = "<p style= color:red;>Invalid Input </p>";
-         result.innerHTML="<p class = 'pos'style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p id='error' class = 'pos'style= color:red;>Invalid Input </p>";
          //ciphertext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
       /*IF input IS VAlid*/
@@ -115,7 +129,7 @@
       var result = document.getElementById("decryptionResult");
       if (isNaN(c) || c < 0 || c >= 33 ){
          //plaintext= "<p style= color:red;>Invalid Input </p>";
-         result.innerHTML="<p class = 'pos' style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input </p>";
          //plaintext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
       /*IF input IS VAlid*/
