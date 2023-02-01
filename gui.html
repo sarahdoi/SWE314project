@@ -56,7 +56,7 @@
 
                   <div class="field btn">
                      <div class="btn-layer"></div>
-                     <input id = "plaintextBTN" type="submit" value="Encryption">
+                     <input id = "plaintextBTN" type="submit" value="Encrypte">
                   </div>
 
               </form>
@@ -73,7 +73,7 @@
              
                   <div class="field btn"> 
                      <div class="btn-layer"></div>
-                     <input id = "ciphertextBTN" type="submit" value="Decryption">
+                     <input id = "ciphertextBTN" type="submit" value="Decrypte">
                   </div>
                </form>
             </div>
@@ -84,12 +84,12 @@
 
 
 <script type = "text/javascript">
-   var p = 7; /* 1st prime number p*/
-   var q = 5; /* 2st prime number q*/
+   var p = 3 ; /* 1st prime number p*/
+   var q = 11; /* 2st prime number q*/
    var n = p * q ; /* n */
    var z = ( p - 1 )*( q - 1 ); /*Euler*/
    var e = 7 ;/* public key */
-   var d = 7 ;/* private key */
+   var d = 3 ;/* private key */
 
 
    
@@ -105,7 +105,7 @@
       var msg = document.getElementById("plaintext").value;
       var ciphertext;
       var result = document.getElementById("encryptionResult");
-      if (isNaN(msg)){
+      if (isNaN(msg) || msg < 0 || msg >= 33){
          //ciphertext = "<p style= color:red;>Invalid Input </p>";
          result.innerHTML="<p id='error' class = 'pos'style= color:red;>Invalid Input(Just numbers)</p>";
          //ciphertext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
@@ -132,8 +132,7 @@
       var c = document.getElementById("ciphertext").value;
       var plaintext;
       var result = document.getElementById("decryptionResult");
-      if (isNaN(c))
-      {
+      if (isNaN(c) || c < 0 || c >= 33 ){
          //plaintext= "<p style= color:red;>Invalid Input </p>";
          result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just numbers)</p>";
          //plaintext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
