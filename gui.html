@@ -40,7 +40,7 @@
                <label for="decryption" class="slide decryption">Decrypte</label>
                <div class="slider-tab"></div>
             </div>
-            <p>Please Enter a valid text from 0 to 32</p>
+            <p>Please Enter a valid text from 0 to 34</p>
             <!-- ENCRYPTION -->
             <div class="form-inner">
                <form action="#" class="encryption">
@@ -84,12 +84,12 @@
 
 
 <script type = "text/javascript">
-   var p = 3 ; /* 1st prime number p*/
-   var q = 11; /* 2st prime number q*/
+   var p = 7; /* 1st prime number p*/
+   var q = 5; /* 2st prime number q*/
    var n = p * q ; /* n */
    var z = ( p - 1 )*( q - 1 ); /*Euler*/
    var e = 7 ;/* public key */
-   var d = 3 ;/* private key */
+   var d = 7 ;/* private key */
 
 
    
@@ -105,13 +105,19 @@
       var msg = document.getElementById("plaintext").value;
       var ciphertext;
       var result = document.getElementById("encryptionResult");
-      if (isNaN(msg) || msg < 0 || msg >= 33){
+      if (isNaN(msg)){
          //ciphertext = "<p style= color:red;>Invalid Input </p>";
-         result.innerHTML="<p id='error' class = 'pos'style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p id='error' class = 'pos'style= color:red;>Invalid Input(Just numbers)</p>";
          //ciphertext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
-      /*IF input IS VAlid*/
-      else{
+      else if(msg < 0 )
+      {
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just positive numbers)</p>"; 
+      }
+      else if(msg >= 35){
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(reach the maximum)</p>";
+      }
+      else{      /*IF input IS VAlid*/
          //document.getElementById("DeErrormsg").innerHTML = "";
          ciphertext = (Math.pow(msg,e)) % n;;
        result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Ciphertext="+ciphertext+"</p>";
@@ -121,19 +127,25 @@
 
    }
 
-
    function decrypt(){
 
       var c = document.getElementById("ciphertext").value;
       var plaintext;
       var result = document.getElementById("decryptionResult");
-      if (isNaN(c) || c < 0 || c >= 33 ){
+      if (isNaN(c))
+      {
          //plaintext= "<p style= color:red;>Invalid Input </p>";
-         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input </p>";
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just numbers)</p>";
          //plaintext = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';''>;</span> <strong>Invalid</strong> Input!</div>";
       }
-      /*IF input IS VAlid*/
-      else{
+      else if(c < 0 )
+      {
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just positive numbers)</p>";
+      }
+      else if(c >= 35){
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(reach the maximum)</p>";  
+      }
+      else{      /*IF input IS VAlid*/
          document.getElementById("DeErrormsg").innerHTML = "";
          plaintext = (Math.pow(c,d)) % n;
          result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Plaintext="+plaintext+"</p>";
