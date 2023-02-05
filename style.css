@@ -140,7 +140,7 @@ form .field input:focus::placeholder{
 }
 .form-inner form .pass-link a,
 .form-inner form .decryption-link a{
-  color: #4269ac;
+  color: 5%;
   text-decoration: none;
 }
 .form-inner form .pass-link a:hover,
