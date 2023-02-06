@@ -2,6 +2,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
+      
+<!-- Sarah Alduwayhi	
+442202328
+
+Rand Alsuhaibani	
+442201389
+
+Wajd Alzakari	
+442200860
+
+Cady Alolyan	
+442200452
+
+Dulayel Alnutaifi	
+442201334
+
+Taif Alsamrani	
+442201861  -->
+
       <meta charset="utf-8">
       <title>welcome</title>
       <link rel="stylesheet" href="style.css">
@@ -21,7 +40,6 @@
                  }
        </style>
 
-
       <div class="wrapper">
          <div class="title-text">
             <div class="title encryption">
@@ -31,7 +49,6 @@
              Decryption
             </div>
          </div>
-
          <div class="form-container">
             <div class="slide-controls">
                <input type="radio" name="slide" id="encryption" checked>
@@ -41,36 +58,30 @@
                <div class="slider-tab"></div>
             </div>
             <p>Please Enter a valid text from 0 to 34</p>
-            <!-- ENCRYPTION (plaintext input field and encrypte button) -->
+            <!-- ENCRYPTION -->
             <div class="form-inner">
                <form action="#" class="encryption">
                   <div class="field">
                      <input id = "plaintext" type="text" placeholder="Plaintext" required>
                   </div>
                   <div id="EnErrormsg"></div>
-                  
-                  
                   <div class="field">
                      <span class="label other"id ="encryptionResult"></span>
                   </div>
-
                   <div class="field btn">
                      <div class="btn-layer"></div>
                      <input id = "plaintextBTN" type="submit" value="Encrypte">
                   </div>
-
               </form>
-              <!-- DECRYPTION (ciphertext input field and decrypte button)  -->
+              <!-- DECRYPTION -->
                <form action="#" class="decryption">
                   <div class="field">
                      <input id = "ciphertext" type="text" placeholder="Ciphertext" required>
                   </div>
                   <div id="DeErrormsg"></div>
-
                   <div class="field">
                      <span class="label other"id ="decryptionResult"></span> 
                   </div>
-             
                   <div class="field btn"> 
                      <div class="btn-layer"></div>
                      <input id = "ciphertextBTN" type="submit" value="Decrypte">
@@ -82,10 +93,10 @@
    </script>
 </script>
 
-<!--Calculations for key setup-->
+
 <script type = "text/javascript">
-   var p = 5; /* 1st prime number p*/
-   var q = 7; /* 2st prime number q*/
+   var p = 7 ; /* 1st prime number p*/
+   var q = 5; /* 2st prime number q*/
    var n = p * q ; /* n */
    var z = ( p - 1 )*( q - 1 ); /*Euler*/
    var e = 7 ;/* public key */
@@ -105,8 +116,7 @@
       var msg = document.getElementById("plaintext").value;
       var ciphertext;
       var result = document.getElementById("encryptionResult");
-       //input validation for the plaintext
-      if (isNaN(msg) || msg < 0 || msg >= 35){  
+      if (isNaN(msg)){
          result.innerHTML="<p id='error' class = 'pos'style= color:red;>Invalid Input(Just numbers)</p>";
       }
       else if(msg < 0 )
@@ -116,14 +126,16 @@
       else if(msg >= 35){
          result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(reach the maximum)</p>";
       }
-      else{      
-         /*if input is valid */
+      else if(Number.isInteger(+msg)){      /*IF input IS VAlid*/
          ciphertext = (Math.pow(msg,e)) % n;;
        result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Ciphertext="+ciphertext+"</p>";
        
       }
-
-
+      else{
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just Integer numbers)</p>";
+      
+      }
+       
    }
 
    function decrypt(){
@@ -131,8 +143,7 @@
       var c = document.getElementById("ciphertext").value;
       var plaintext;
       var result = document.getElementById("decryptionResult");
-      //input validation for the ciphertext
-      if (isNaN(c) || c < 0 || c >= 35 ){
+      if (isNaN(c) ){
          result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just numbers)</p>";
       }
       else if(c < 0 )
@@ -142,12 +153,16 @@
       else if(c >= 35){
          result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(reach the maximum)</p>";  
       }
-      else{      
-         /*if input is valid */
-         document.getElementById("DeErrormsg").innerHTML = "";
-         plaintext = (Math.pow(c,d)) % n;
-         result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Plaintext="+plaintext+"</p>";
+      else if(Number.isInteger(+c)){      /*IF input IS VAlid*/
+         pliantext = (Math.pow(c,d)) % n;;
+       result.innerHTML="<p class = 'pos'style= color:#4269ac;>The Pliantext="+pliantext+"</p>";
+       
       }
+      else{
+         result.innerHTML="<p id='error' class = 'pos' style= color:red;>Invalid Input(Just Integer numbers)</p>";
+      
+      }
+       
    }
       window.addEventListener( "load" , start , false );
    </script>
