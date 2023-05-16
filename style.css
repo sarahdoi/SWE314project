@@ -109,6 +109,20 @@ input[type="radio"]{
   width: 100%;
   margin-top: 20px;
 }
+
+#error {
+  background : #F2DEDE;
+  color : #A94442;
+  padding:10px;
+  width : 95%;
+  border-radius:5px;
+  height: 100%;
+ width: 100%;
+ 
+        }
+
+
+        
 .form-inner form .field input{
   height: 100%;
   width: 100%;
